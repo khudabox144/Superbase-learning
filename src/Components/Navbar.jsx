@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 const Navbar = () => {
   return (
-    <di >
+    <div >
       <nav className="bg-cyan-300 shadow-md fixed w-full top-0 z-10">
       <div className="container mx-auto px-4 py-3">
         <div className="text-center " >
@@ -24,7 +24,7 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
-    </di>
+    </div>
   );
 };
 

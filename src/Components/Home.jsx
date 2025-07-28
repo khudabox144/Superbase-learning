@@ -6,6 +6,7 @@ const Home = () => {
   const [fetchError, setFetchError] = useState(null);
   const [smoothies, setSmoothies] = useState(null);
 
+
   // Fetch data from Supabase
   useEffect(() => {
     const fetchSmoothies = async () => {
@@ -27,6 +28,19 @@ const Home = () => {
     fetchSmoothies();
   }, []);
 
+
+  //delete a card 
+  const handleDelete=async(deleteCardId)=>{
+    // e.preventDefault();
+    const {error}=await supabase.from("smoothies").delete().eq("id",deleteCardId);
+    if(error){
+      console.log("Delete error :",error);
+    }
+    else{
+      setSmoothies(smoothies.filter(card=>card.id!==deleteCardId));
+    }
+  }
+
   return (
     <div className="p-4 bg-base-200 min-h-screen">
       <h1 className="text-xl font-bold mb-4">Smoothies List</h1>
@@ -35,7 +49,7 @@ const Home = () => {
 
       {smoothies && smoothies.length > 0 ? (
         <ul className="space-y-2 grid grid-cols-4 gap-5  ">
-          {smoothies.map((smoothie) => <SmoothieCard key={smoothie.id} smoothie={smoothie} ></SmoothieCard> )}
+          {smoothies.map((smoothie) => <SmoothieCard handleDelete={handleDelete}  key={smoothie.id} smoothie={smoothie} ></SmoothieCard> )}
         </ul>
       ) : (
         !fetchError && <p>No smoothies found.</p>

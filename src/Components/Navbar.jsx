@@ -2,8 +2,12 @@ import { Link } from "react-router";
 
 const Navbar = () => {
   return (
-    <nav className="bg-white shadow-md fixed w-full top-0 z-10">
+    <di >
+      <nav className="bg-cyan-300 shadow-md fixed w-full top-0 z-10">
       <div className="container mx-auto px-4 py-3">
+        <div className="text-center " >
+          <h1 className="text-3xl font-semibold" >Smoothies</h1>
+        </div>
         <div className="flex justify-center space-x-8">
           <Link 
             to="/" 
@@ -20,6 +24,7 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
+    </di>
   );
 };
 

@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router';
 import { Authcontext } from '../AuthProvider/Authcontext';
 
 const SignIn = () => {
-  const {Loginuser}=use(Authcontext);
+  const {loginUser,setUserEmail}=use(Authcontext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -11,9 +11,13 @@ const SignIn = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const { error } = await Loginuser(email,password);
+    const { error } = await loginUser(email,password);
     if (error) setError(error.message);
-    else navigate('/');
+    else {
+
+      navigate('/');
+      setUserEmail(email);
+    }
   };
 
   return (
